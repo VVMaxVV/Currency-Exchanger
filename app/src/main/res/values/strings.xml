@@ -5,6 +5,7 @@
     <string name="label_receive">Receive</string>
     <string name="arrow_downward_description">Receive</string>
     <string name="header_my_balances">MY BALANCES</string>
+    <string name="header_currency_rate">CURRENCY RATE (1€)</string>
     <string name="header_currency_exchange">CURRENCY EXCHANGE</string>
 
     <string name="button_text_submit">SUBMIT</string>

@@ -6,22 +6,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.style.TextOverflow
 import com.example.currencyexchanger.R
+import com.example.currencyexchanger.domain.model.RateCurrency
 
 @Composable
-fun BalanceCurrencyItem(
-    name: String,
-    amount: String,
-    modifier: Modifier = Modifier
-) {
+fun RateCurrencyItem(rateCurrency: RateCurrency, modifier: Modifier = Modifier) {
     Card(modifier) {
         Text(
-            text = "$amount $name",
+            text = "${rateCurrency.code} ${rateCurrency.rate}",
             modifier = Modifier.padding(
                 horizontal = dimensionResource(
                     id = R.dimen.balance_card_item_label_horizontal_padding
                 )
-            )
+            ),
+            maxLines = 1,
+            overflow = TextOverflow.Clip
         )
     }
 }
