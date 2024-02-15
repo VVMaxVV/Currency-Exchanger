@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Currency Exchanger</string>
+    <string name="arrow_upward_description">Sell</string>
+    <string name="label_sell">Sell</string>
+    <string name="label_receive">Receive</string>
+    <string name="arrow_downward_description">Receive</string>
+    <string name="header_my_balances">MY BALANCES</string>
+    <string name="header_currency_exchange">CURRENCY EXCHANGE</string>
+
+    <string name="button_text_submit">SUBMIT</string>
+    <string name="button_text_show_more">SHOW MORE</string>
+    <string name="button_text_show_less">SHOW LESS</string>
 </resources>
