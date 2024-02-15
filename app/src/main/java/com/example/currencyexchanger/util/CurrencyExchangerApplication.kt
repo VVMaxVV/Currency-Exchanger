@@ -7,7 +7,7 @@ import com.example.currencyexchanger.presenter.di.presenterModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class CurrencyExchangerApplication: Application() {
+class CurrencyExchangerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {

@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Currency Exchanger"
 include(":app")
- 

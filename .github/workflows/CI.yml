@@ -28,6 +28,9 @@ jobs:
           distribution: 'temurin'
           architecture: x64
 
+      - name: Linting
+        run: ./gradlew ktlintCheck
+
       - name: Assembling
         run: ./gradlew assembleDebug
 

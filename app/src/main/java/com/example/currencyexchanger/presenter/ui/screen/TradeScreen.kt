@@ -20,7 +20,8 @@ import com.example.currencyexchanger.presenter.ui.item.TradeCardItem
 fun TradeScreen() {
     Text(
         text = stringResource(id = R.string.header_currency_exchange),
-        modifier = Modifier
+        modifier =
+        Modifier
             .fillMaxWidth()
             .padding(vertical = dimensionResource(id = R.dimen.header_vertical_padding)),
         textAlign = TextAlign.Center

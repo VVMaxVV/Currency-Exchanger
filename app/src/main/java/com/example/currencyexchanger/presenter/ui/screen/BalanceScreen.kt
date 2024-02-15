@@ -24,22 +24,23 @@ import com.example.currencyexchanger.presenter.ui.item.BalanceCurrencyItem
 import com.example.currencyexchanger.presenter.viewmodel.BalanceViewModel
 import org.koin.androidx.compose.koinViewModel
 
-
 private const val GRID_COLUMNS_NUMBER = 2
 private const val GRID_ROWS_NUMBER = 3
 
 @Composable
 fun BalanceScreen(modifier: Modifier = Modifier) {
-    val balanceViewModel: BalanceViewModel = koinViewModel<BalanceViewModel>().apply {
-        fetchBalance()
-    }
+    val balanceViewModel: BalanceViewModel =
+        koinViewModel<BalanceViewModel>().apply {
+            fetchBalance()
+        }
     val currencyList by balanceViewModel.currencyList
     var isGridExpanded by remember { mutableStateOf(false) }
 
     Column(modifier) {
         Text(
             text = stringResource(R.string.header_my_balances),
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(vertical = dimensionResource(R.dimen.header_vertical_padding)),
             textAlign = TextAlign.Center
@@ -47,23 +48,28 @@ fun BalanceScreen(modifier: Modifier = Modifier) {
 
         LazyVerticalStaggeredGrid(
             columns = StaggeredGridCells.Fixed(GRID_COLUMNS_NUMBER),
-            contentPadding = PaddingValues(
+            contentPadding =
+            PaddingValues(
                 horizontal = dimensionResource(id = R.dimen.balance_grid_content_padding_horizontal),
                 vertical = dimensionResource(id = R.dimen.balance_grid_content_padding_vertical)
             ),
             verticalItemSpacing = dimensionResource(id = R.dimen.balance_grid_vertical_item_spacing),
             modifier = Modifier.heightIn(max = dimensionResource(id = R.dimen.balance_grid_max_height))
-
         ) {
             items(
-                if (isGridExpanded) currencyList else
+                if (isGridExpanded) {
+                    currencyList
+                } else {
                     currencyList.take(GRID_COLUMNS_NUMBER * GRID_ROWS_NUMBER)
+                }
             ) {
                 BalanceCurrencyItem(
                     name = it.name,
                     amount = it.amount,
-                    modifier = Modifier.padding(
-                        horizontal = dimensionResource(
+                    modifier =
+                    Modifier.padding(
+                        horizontal =
+                        dimensionResource(
                             id = R.dimen.balance_card_item_label_horizontal_padding
                         )
                     )
@@ -75,14 +81,19 @@ fun BalanceScreen(modifier: Modifier = Modifier) {
             onClick = {
                 isGridExpanded = !isGridExpanded
             },
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .padding(dimensionResource(id = R.dimen.button_padding))
         ) {
             Text(
-                text = stringResource(
-                    if (isGridExpanded) R.string.button_text_show_less
-                    else R.string.button_text_show_more
+                text =
+                stringResource(
+                    if (isGridExpanded) {
+                        R.string.button_text_show_less
+                    } else {
+                        R.string.button_text_show_more
+                    }
                 )
             )
         }
