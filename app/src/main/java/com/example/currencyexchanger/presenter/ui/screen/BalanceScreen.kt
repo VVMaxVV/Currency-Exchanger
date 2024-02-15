@@ -65,14 +65,7 @@ fun BalanceScreen(modifier: Modifier = Modifier) {
             ) {
                 BalanceCurrencyItem(
                     name = it.name,
-                    amount = it.amount,
-                    modifier =
-                    Modifier.padding(
-                        horizontal =
-                        dimensionResource(
-                            id = R.dimen.balance_card_item_label_horizontal_padding
-                        )
-                    )
+                    amount = it.amount
                 )
             }
         }
