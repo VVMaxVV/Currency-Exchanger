@@ -7,8 +7,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-
 private const val DATA_UPDATE_TIME = 5 * 1000L
+
 internal class GetBalanceUseCaseImpl(private val balanceRepository: BalanceRepository) : GetBalanceUseCase {
     override suspend fun execute(): Flow<List<Currency>> {
         return flow {

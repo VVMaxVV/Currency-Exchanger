@@ -44,7 +44,8 @@ fun TradeCardItem(
         shape = RoundedCornerShape(dimensionResource(id = R.dimen.trade_card_item_corner))
     ) {
         Row(
-            modifier = Modifier
+            modifier =
+            Modifier
                 .fillMaxWidth()
                 .height(dimensionResource(id = R.dimen.trade_card_item_height)),
             verticalAlignment = Alignment.CenterVertically
@@ -53,7 +54,8 @@ fun TradeCardItem(
                 Icon(
                     painter = painterResource(id),
                     contentDescription = stringResource(id = R.string.arrow_upward_description),
-                    modifier = Modifier
+                    modifier =
+                    Modifier
                         .weight(0.75f)
                         .fillMaxHeight(),
                     tint = iconTintColor ?: LocalContentColor.current
@@ -69,10 +71,12 @@ fun TradeCardItem(
                 onValueChange = { exchangeAmount = it },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 singleLine = true,
-                modifier = Modifier
+                modifier =
+                Modifier
                     .weight(2f)
                     .padding(
-                        horizontal = dimensionResource(
+                        horizontal =
+                        dimensionResource(
                             id = R.dimen.trade_card_text_field_horizontal_padding
                         )
                     ),
