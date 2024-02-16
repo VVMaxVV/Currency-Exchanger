@@ -1,5 +1,6 @@
 package com.example.currencyexchanger.presenter.ui.screen
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,11 +12,13 @@ import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -27,6 +30,8 @@ import org.koin.androidx.compose.koinViewModel
 private const val GRID_COLUMNS_NUMBER = 2
 private const val GRID_ROWS_NUMBER = 3
 
+private const val FIRST_RUN_PREFERENCE_KEY = "FIRST_RUN"
+
 @Composable
 fun BalanceScreen(modifier: Modifier = Modifier) {
     val balanceViewModel: BalanceViewModel =
@@ -35,6 +40,15 @@ fun BalanceScreen(modifier: Modifier = Modifier) {
         }
     val currencyList by balanceViewModel.currencyList
     var isGridExpanded by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        val sharedPreferences = context.getSharedPreferences("preference", Context.MODE_PRIVATE)
+        if (sharedPreferences.getBoolean(FIRST_RUN_PREFERENCE_KEY, true)) {
+            balanceViewModel.giveStartingBonus()
+            sharedPreferences.edit().putBoolean(FIRST_RUN_PREFERENCE_KEY, false).apply()
+        }
+    }
 
     Column(modifier) {
         Text(
@@ -65,7 +79,7 @@ fun BalanceScreen(modifier: Modifier = Modifier) {
             ) {
                 BalanceCurrencyItem(
                     name = it.name,
-                    amount = it.amount
+                    amount = it.amount.toString()
                 )
             }
         }

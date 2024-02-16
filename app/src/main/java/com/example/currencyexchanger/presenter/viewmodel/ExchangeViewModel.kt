@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.currencyexchanger.domain.model.RateCurrency
 import com.example.currencyexchanger.domain.usecase.GetCurrencyRateUseCase
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -25,11 +27,17 @@ internal class ExchangeViewModel(
     private val _timeLastSynchronizing = mutableStateOf("")
     val timeLastSynchronizing: State<String> get() = _timeLastSynchronizing
 
+    var job: Job? = null
+
     fun fetchCurrencyRate() {
-        viewModelScope.launch {
-            getCurrencyRateUseCase.execute().collect {
-                _currencyRateList.value = it
-                _timeLastSynchronizing.value = getCurrentTime()
+        job = viewModelScope.launch {
+            try {
+                getCurrencyRateUseCase.execute().collect {
+                    _currencyRateList.value = it
+                    _timeLastSynchronizing.value = getCurrentTime()
+                }
+            } catch (e: Exception) {
+                val a = e
             }
         }
     }
@@ -38,5 +46,10 @@ internal class ExchangeViewModel(
         val currentTime = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("HH:mm:ss")
         return dateFormat.format(Date(currentTime))
+    }
+
+    override fun onCleared() {
+        job?.cancel()
+        super.onCleared()
     }
 }

@@ -6,8 +6,7 @@ import com.example.currencyexchanger.domain.repository.BalanceRepository
 import com.example.currencyexchanger.domain.repository.RateRepository
 import org.koin.dsl.module
 
-internal val repositoryModule =
-    module {
-        single<BalanceRepository> { BalanceRepositoryImpl() }
-        single<RateRepository> { RateRepositoryImpl(get(), get()) }
-    }
+internal val repositoryModule = module {
+    single<BalanceRepository> { BalanceRepositoryImpl(get()) }
+    single<RateRepository> { RateRepositoryImpl(get(), get()) }
+}

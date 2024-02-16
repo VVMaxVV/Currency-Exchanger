@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -47,7 +48,7 @@ fun RateScreen() {
             .background(MaterialTheme.colorScheme.surface)
     )
 
-    val currencyRateList by rememberSaveable { exchangeViewModel.currencyRateList }
+    val currencyRateList by remember { exchangeViewModel.currencyRateList }
 
     currencyRateList?.let { currencyRateList ->
         LazyVerticalStaggeredGrid(
