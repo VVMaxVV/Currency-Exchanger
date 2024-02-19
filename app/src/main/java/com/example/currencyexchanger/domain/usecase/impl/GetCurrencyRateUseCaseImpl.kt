@@ -7,12 +7,17 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
+private const val DELAY_TIME = 5 * 1000L
+
 internal class GetCurrencyRateUseCaseImpl(private val rateRepository: RateRepository) : GetCurrencyRateUseCase {
     override suspend fun execute(): Flow<List<RateCurrency>> {
         return flow {
             while (true) {
-                emit(rateRepository.getRateCurrencyList())
-                delay(5000)
+                try {
+                    emit(rateRepository.getRateCurrencyList())
+                } finally {
+                    delay(DELAY_TIME)
+                }
             }
         }
     }

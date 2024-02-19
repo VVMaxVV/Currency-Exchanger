@@ -5,8 +5,10 @@ import org.koin.dsl.module
 val dataModule = module {
     includes(
         apiModule,
+        dbModule,
         mapperModule,
         repositoryModule,
-        retrofitModule
+        retrofitModule,
+        storageModule
     )
 }

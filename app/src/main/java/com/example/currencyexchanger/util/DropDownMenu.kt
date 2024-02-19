@@ -1,6 +1,5 @@
 package com.example.currencyexchanger.util
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,12 +20,13 @@ import androidx.compose.ui.platform.LocalContext
 @Composable
 fun DropDownMenu(
     modifier: Modifier = Modifier,
-    list: List<String> = listOf("EUR", "USD", "UAH"),
-    isError: MutableState<Boolean>
+    currencyCodeList: List<String> = listOf("EUR", "USD", "UAH"),
+    isError: MutableState<Boolean>,
+    selectedCode: MutableState<String>
 ) {
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
-    var selectedText by remember { mutableStateOf("") }
+    var selectedText by remember { selectedCode }
 
     Box(
         modifier = modifier
@@ -39,7 +39,9 @@ fun DropDownMenu(
         ) {
             TextField(
                 value = selectedText,
-                onValueChange = { selectedText = it },
+                onValueChange = {
+                    selectedText = it
+                },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 modifier = Modifier.menuAnchor(),
                 singleLine = true,
@@ -47,7 +49,7 @@ fun DropDownMenu(
             )
 
             val filteredOptions =
-                list.filter { it.contains(selectedText, ignoreCase = true) }
+                currencyCodeList.filter { it.contains(selectedText, ignoreCase = true) }
 
             if (filteredOptions.isNotEmpty()) {
                 ExposedDropdownMenu(
@@ -63,7 +65,6 @@ fun DropDownMenu(
                                 selectedText = item
                                 expanded = false
                                 isError.value = false
-                                Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
                             }
                         )
                     }

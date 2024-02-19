@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,12 +30,14 @@ private const val GRID_ROWS_NUMBER = 3
 
 @Composable
 fun BalanceScreen(modifier: Modifier = Modifier) {
-    val balanceViewModel: BalanceViewModel =
-        koinViewModel<BalanceViewModel>().apply {
-            fetchBalance()
-        }
+    val balanceViewModel: BalanceViewModel = koinViewModel<BalanceViewModel>()
     val currencyList by balanceViewModel.currencyList
     var isGridExpanded by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        balanceViewModel.fetchBalance()
+        balanceViewModel.giveStartingBonus()
+    }
 
     Column(modifier) {
         Text(
@@ -65,7 +68,7 @@ fun BalanceScreen(modifier: Modifier = Modifier) {
             ) {
                 BalanceCurrencyItem(
                     name = it.name,
-                    amount = it.amount
+                    amount = it.amount.toString()
                 )
             }
         }

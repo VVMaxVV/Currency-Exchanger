@@ -11,4 +11,7 @@ internal class RateRepositoryImpl(
 ) : RateRepository {
     override suspend fun getRateCurrencyList(): List<RateCurrency> =
         rateCurrencyResponseMapper.toRateCurrencyList(rateApi.getCurrencyRate())
+
+    override suspend fun getCurrencyCodeList(): List<String> =
+        rateCurrencyResponseMapper.toCurrencyCodeList(rateApi.getCurrencyRate())
 }
