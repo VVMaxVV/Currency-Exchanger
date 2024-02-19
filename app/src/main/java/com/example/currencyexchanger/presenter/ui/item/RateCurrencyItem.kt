@@ -9,12 +9,14 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextOverflow
 import com.example.currencyexchanger.R
 import com.example.currencyexchanger.domain.model.RateCurrency
+import java.util.Locale
 
 @Composable
 fun RateCurrencyItem(rateCurrency: RateCurrency, modifier: Modifier = Modifier) {
     Card(modifier) {
         Text(
-            text = "${rateCurrency.code} ${rateCurrency.rate}",
+            text = "${rateCurrency.code} " +
+                String.format(Locale.US, "%.4f", rateCurrency.rate),
             modifier = Modifier.padding(
                 horizontal = dimensionResource(
                     id = R.dimen.balance_card_item_label_horizontal_padding

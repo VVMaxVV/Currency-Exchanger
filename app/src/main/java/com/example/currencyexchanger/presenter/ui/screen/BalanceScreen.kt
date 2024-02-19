@@ -68,7 +68,7 @@ fun BalanceScreen(modifier: Modifier = Modifier) {
             ) {
                 BalanceCurrencyItem(
                     name = it.name,
-                    amount = it.amount.toString()
+                    amount = it.amount
                 )
             }
         }
