@@ -1,4 +1,4 @@
-package com.example.currencyexchanger.util
+package com.example.currencyexchanger.presenter.ui.util
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.DropdownMenuItem
@@ -14,7 +14,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,7 +23,6 @@ fun DropDownMenu(
     isError: MutableState<Boolean>,
     selectedCode: MutableState<String>
 ) {
-    val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
     var selectedText by remember { selectedCode }
 

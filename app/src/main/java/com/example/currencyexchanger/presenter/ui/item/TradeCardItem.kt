@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import com.example.currencyexchanger.R
-import com.example.currencyexchanger.util.DropDownMenu
+import com.example.currencyexchanger.presenter.ui.util.DropDownMenu
 
 @Composable
 fun TradeCardItem(

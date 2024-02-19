@@ -37,13 +37,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting() {
     Column(Modifier.fillMaxSize()) {
-        Column(Modifier.weight(.9f)) {
-            BalanceScreen()
-            Divider()
-            TradeScreen()
-            Divider()
-            RateScreen()
-        }
+        BalanceScreen()
+        Divider()
+        TradeScreen()
+        Divider()
+        RateScreen()
     }
 }
 

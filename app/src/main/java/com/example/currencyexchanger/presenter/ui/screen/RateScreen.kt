@@ -3,6 +3,7 @@ package com.example.currencyexchanger.presenter.ui.screen
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -25,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.currencyexchanger.R
 import com.example.currencyexchanger.domain.model.RateCurrency
 import com.example.currencyexchanger.presenter.ui.item.RateCurrencyItem
+import com.example.currencyexchanger.presenter.ui.util.shimmerBrush
 import com.example.currencyexchanger.presenter.viewmodel.ExchangeViewModel
 import com.example.currencyexchanger.util.ResultOf
 import org.koin.androidx.compose.koinViewModel
@@ -70,12 +73,17 @@ fun RateScreen() {
 
 @Composable
 private fun CurrencyRateListLoading() {
-    val context = LocalContext.current
-    Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+    Box(
+        Modifier
+            .fillMaxSize()
+            .padding(dimensionResource(id = R.dimen.balance_grid_content_padding_vertical))
+            .background(Brush.shimmerBrush())
+    )
 }
 
 @Composable
 private fun HandleCurrencyRateListError(exception: Exception) {
+    CurrencyRateListLoading()
     val context = LocalContext.current
     when (exception) {
         is IOException -> {
