@@ -51,6 +51,8 @@ android {
 }
 
 dependencies {
+    implementation("com.github.leonard-palm:compose-state-events:2.2.0")
+
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     implementation("androidx.compose.runtime:runtime-livedata:1.6.1")

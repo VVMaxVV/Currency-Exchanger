@@ -8,6 +8,7 @@ val dataModule = module {
         dbModule,
         mapperModule,
         repositoryModule,
-        retrofitModule
+        retrofitModule,
+        storageModule
     )
 }

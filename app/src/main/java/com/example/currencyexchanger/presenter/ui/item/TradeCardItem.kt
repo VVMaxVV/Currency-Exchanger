@@ -34,9 +34,12 @@ import com.example.currencyexchanger.util.DropDownMenu
 fun TradeCardItem(
     text: String,
     @DrawableRes iconId: Int?,
+    currencyCodeList: List<String>,
     iconTintColor: Color?,
     exchangeAmountState: MutableState<String>,
-    isErrorState: MutableState<Boolean>
+    currencyCodeField: MutableState<String>,
+    isErrorState: MutableState<Boolean>,
+    onAmountChanged: () -> Unit = {}
 ) {
     var exchangeAmount by rememberSaveable { exchangeAmountState }
     Card(
@@ -68,7 +71,10 @@ fun TradeCardItem(
             )
             TextField(
                 value = exchangeAmount,
-                onValueChange = { exchangeAmount = it },
+                onValueChange = {
+                    exchangeAmount = it
+                    onAmountChanged()
+                },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 singleLine = true,
                 modifier =
@@ -89,7 +95,12 @@ fun TradeCardItem(
                     )
                 }
             )
-            DropDownMenu(Modifier.weight(1.5f), isError = isErrorState)
+            DropDownMenu(
+                Modifier.weight(1.5f),
+                isError = isErrorState,
+                currencyCodeList = currencyCodeList,
+                selectedCode = currencyCodeField
+            )
         }
     }
 }

@@ -15,6 +15,9 @@
     <dimen name="trade_card_item_padding">12dp</dimen>
     <dimen name="trade_card_text_field_horizontal_padding">8dp</dimen>
 
+    <dimen name="commission_label_vertical_padding">4dp</dimen>
+    <dimen name="commission_label_horizontal_padding">8dp</dimen>
+
     <!--    DIMENSIONS  -->
     <dimen name="balance_grid_max_height">200dp</dimen>
     <dimen name="trade_card_item_height">80dp</dimen>

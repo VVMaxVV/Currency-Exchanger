@@ -1,6 +1,5 @@
 package com.example.currencyexchanger.presenter.ui.screen
 
-import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,7 +17,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -30,24 +28,15 @@ import org.koin.androidx.compose.koinViewModel
 private const val GRID_COLUMNS_NUMBER = 2
 private const val GRID_ROWS_NUMBER = 3
 
-private const val FIRST_RUN_PREFERENCE_KEY = "FIRST_RUN"
-
 @Composable
 fun BalanceScreen(modifier: Modifier = Modifier) {
-    val balanceViewModel: BalanceViewModel =
-        koinViewModel<BalanceViewModel>().apply {
-            fetchBalance()
-        }
+    val balanceViewModel: BalanceViewModel = koinViewModel<BalanceViewModel>()
     val currencyList by balanceViewModel.currencyList
     var isGridExpanded by remember { mutableStateOf(false) }
-    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        val sharedPreferences = context.getSharedPreferences("preference", Context.MODE_PRIVATE)
-        if (sharedPreferences.getBoolean(FIRST_RUN_PREFERENCE_KEY, true)) {
-            balanceViewModel.giveStartingBonus()
-            sharedPreferences.edit().putBoolean(FIRST_RUN_PREFERENCE_KEY, false).apply()
-        }
+        balanceViewModel.fetchBalance()
+        balanceViewModel.giveStartingBonus()
     }
 
     Column(modifier) {

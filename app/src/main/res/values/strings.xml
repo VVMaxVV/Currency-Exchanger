@@ -8,6 +8,19 @@
     <string name="header_currency_rate">CURRENCY RATE (1€)</string>
     <string name="header_currency_exchange">CURRENCY EXCHANGE</string>
 
+    <string name="exchange_code_problem_toast">This currency pair cannot currently be exchanged</string>
+    <string name="not_enough_currency_toast">The amount to sell exceeds the balance</string>
+    <string name="successfully_transaction_toast">The transaction was successfully completed</string>
+    <string name="bad_internet_connection_toast">Bad internet connection</string>
+    <string name="exchange_amount_is_zero_or_less_toast">Exchange amount must be greater than zero</string>
+    <string name="transactions_up_to_free_commission_toast">Transactions up to free commission</string>
+
+
+    <string name="time_last_synchronization_label">Time last synchronization</string>
+    <string name="commission_label">Commission</string>
+    <string name="loading_label">Loading</string>
+    <string name="error_label">Error</string>
+
     <string name="button_text_submit">SUBMIT</string>
     <string name="button_text_show_more">SHOW MORE</string>
     <string name="button_text_show_less">SHOW LESS</string>
